@@ -4,6 +4,8 @@
 "..\..\output\system_stm32f1xx.o"
 "..\..\output\stm32f1xx_it.o"
 "..\..\output\esp8266.o"
+"..\..\output\temp.o"
+"..\..\output\http.o"
 "..\..\output\delay.o"
 "..\..\output\sys.o"
 "..\..\output\usart.o"
@@ -26,6 +28,7 @@
 "..\..\output\lcd.o"
 "..\..\output\atk_mw8266d.o"
 "..\..\output\atk_mw8266d_uart.o"
+"..\..\output\dht11.o"
 --strict --scatter "..\..\Output\atk_f103.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

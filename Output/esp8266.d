@@ -68,3 +68,5 @@
 ..\..\output\esp8266.o: ..\..\Drivers\./BSP/KEY/key.h
 ..\..\output\esp8266.o: ..\..\Drivers\./BSP/LCD/lcd.h
 ..\..\output\esp8266.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\..\output\esp8266.o: ..\..\User\temp.h
+..\..\output\esp8266.o: ..\..\User\http.h

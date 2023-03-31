@@ -5,6 +5,8 @@
 #include "./BSP/LED/led.h"
 #include "./BSP/KEY/key.h"
 #include "./BSP/LCD/lcd.h"
+#include "temp.h"
+#include "http.h"
 
 #define WIFI_SSID "Ekko_01"                 // 配置WiFi名称
 #define WIFI_PWD "py011121"                 // 配置WiFi密码
@@ -16,7 +18,7 @@
 static void show_ip(char *buf)
 {
     printf("IP: %s\r\n", buf);
-    lcd_show_string(32, 160, 128, 16, 16, buf, BLUE);
+    lcd_show_string(32, 180, 128, 16, 16, buf, BLUE);
 }
 
 /**
@@ -79,7 +81,7 @@ static void upload_data(uint8_t is_unvarnished)
  * @brief HTTP POST 请求
  * @author Ekko
  */
-static void http_post(char request[], uint8_t is_unvarnished)
+void http_post(char request[], uint8_t is_unvarnished)
 { // request为整个请求体
     /*
     示例
@@ -99,9 +101,8 @@ static void http_post(char request[], uint8_t is_unvarnished)
 
     atk_mw8266d_uart_printf(request);
 
-    lcd_show_string(10, 200, 256, 16, 16, "HTTP POST success!", RED);
-
-    delay_ms(1000);
+    delay_ms(2000);
+    lcd_show_string(10, 220, 256, 16, 16, "HTTP POST success!   sending.....", RED);
 
     // 关闭透传模式
     if (is_unvarnished == 1)
@@ -111,7 +112,7 @@ static void http_post(char request[], uint8_t is_unvarnished)
 }
 
 /**
- * @brief       例程演示入口函数
+ * @brief       Esp8266初始化
  * @param       无
  * @retval      无
  */
@@ -122,12 +123,9 @@ void ESP8266_init(void)
     uint8_t key;
     uint8_t is_unvarnished = 0;
 
-    char request[] = "POST /api/v1/psPBidsv4XBNbl3bu91D/telemetry HTTP/1.1\r\n"
-                     "Host: 43.143.141.18:8080\r\n"
-                     "Content-Type: application/json\r\n"
-                     "Content-Length: 35\r\n"
-                     "\r\n"
-                     "{\"zut0\":\"ekko5\", \"cs20\":\"value2\"}\r\n";
+    char request[1024];
+
+    // char request[1024];
 
     /* 初始化ATK-MW8266D */
     ret = atk_mw8266d_init(115200);
@@ -140,20 +138,20 @@ void ESP8266_init(void)
             delay_ms(200);
         }
     }
-    lcd_show_string(10, 120, 256, 16, 16, "ESP8266 init success!", BLUE);
+    lcd_show_string(10, 140, 256, 16, 16, "ESP8266 init success!", BLUE);
     printf("Joining to AP...\r\n");
     ret = atk_mw8266d_restore();      /* 恢复出厂设置 */
     ret += atk_mw8266d_at_test();     /* AT测试 */
     ret += atk_mw8266d_set_mode(1);   /* Station模式 */
     ret += atk_mw8266d_sw_reset();    /* 软件复位 */
     ret += atk_mw8266d_ate_config(0); /* 关闭回显功能 */
-    lcd_show_string(10, 140, 256, 16, 16, "Joining to AP......", BLUE);
+    lcd_show_string(10, 160, 256, 16, 16, "Joining to AP......", BLUE);
     ret += atk_mw8266d_join_ap(WIFI_SSID, WIFI_PWD); /* 连接WIFI */
     ret += atk_mw8266d_get_ip(ip_buf);               /* 获取IP地址 */
     if (ret != 0)
     {
         printf("Error to join ap!\r\n");
-        lcd_show_string(10, 140, 256, 16, 16, "Joining to AP failed!", BLUE);
+        lcd_show_string(10, 160, 256, 16, 16, "Joining to AP failed!", BLUE);
         while (1)
         {
             LED0_TOGGLE();
@@ -161,7 +159,7 @@ void ESP8266_init(void)
         }
     }
     lcd_show_string(10, 140, 256, 16, 16, "Joining to AP success!", BLUE);
-    lcd_show_string(10, 160, 256, 16, 16, "IP: ", BLUE);
+    lcd_show_string(10, 180, 256, 16, 16, "IP: ", BLUE);
     show_ip(ip_buf);
 
     /* 连接TCP服务器 */
@@ -169,44 +167,15 @@ void ESP8266_init(void)
     if (ret != 0)
     {
         printf("Error to connect tcp server!\r\n");
-        lcd_show_string(10, 180, 256, 16, 16, "Connect to thingsboard failed!", BLUE);
+        lcd_show_string(10, 200, 256, 16, 16, "Connect to thingsboard failed!", BLUE);
         while (1)
         {
             LED0_TOGGLE();
             delay_ms(200);
         }
     }
-    lcd_show_string(10, 180, 256, 16, 16, "Connect to thingsboard success!", BLUE);
+    lcd_show_string(10, 200, 256, 16, 16, "Connect to thingsboard success!", BLUE);
 
     /* 重新开始接收新的一帧数据 */
     atk_mw8266d_uart_rx_restart();
-
-    while (1)
-    {
-        key = key_scan(0);
-        switch (key)
-        {
-        case KEY0_PRES:
-        {
-            // 测试HTTP POST请求
-            http_post(request, is_unvarnished);
-            break;
-        }
-        case KEY1_PRES:
-        {
-            /* 透传模式切换 */
-            change_unvarnished(&is_unvarnished);
-            break;
-        }
-        default:
-        {
-            break;
-        }
-        }
-
-        /* 发送透传接收自TCP Server的数据到串口调试助手 */
-        upload_data(is_unvarnished);
-
-        delay_ms(10);
-    }
 }

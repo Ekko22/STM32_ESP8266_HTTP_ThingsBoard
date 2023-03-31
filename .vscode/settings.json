@@ -1,5 +1,11 @@
 {
   "files.associations": {
-    "demo.h": "c"
+    "demo.h": "c",
+    "led.h": "c",
+    "delay.h": "c",
+    "esp8266.h": "c",
+    "string.h": "c",
+    "http.h": "c",
+    "temp.h": "c"
   }
 }

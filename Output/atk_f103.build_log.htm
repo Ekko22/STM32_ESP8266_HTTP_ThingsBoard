@@ -27,11 +27,24 @@ Project File Date:  03/31/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ATK-MW8266D'
-compiling ESP8266.c...
+compiling main.c...
+..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\User\http.h(4): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\User\main.c(31): warning:  #223-D: function "temp_init" declared implicitly
+      temp_init();                        /* 初始化温湿度传感器 */
+..\..\User\main.c(44): warning:  #223-D: function "request_body" declared implicitly
+              request_body(request);
+..\..\User\main.c(46): warning:  #223-D: function "http_post" declared implicitly
+              http_post(request, is_unvarnished);
+..\..\User\main.c(49): warning:  #223-D: function "dht11_read_data" declared implicitly
+              dht11_read_data(&temperature, &humidity);
+..\..\User\main.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=29440 RO-data=13248 RW-data=36 ZI-data=2244  
+Program Size: Code=30192 RO-data=13184 RW-data=36 ZI-data=2244  
 FromELF: creating hex file...
-"..\..\Output\atk_f103.axf" - 0 Error(s), 0 Warning(s).
+"..\..\Output\atk_f103.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,7 +57,7 @@ Package Vendor: Keil
   C:\Users\Ekko\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
