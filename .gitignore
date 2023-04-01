@@ -1,6 +1,0 @@
-/.vscode
-/Output
-!/Output/*.hex
-
-*.axf
-*.o
