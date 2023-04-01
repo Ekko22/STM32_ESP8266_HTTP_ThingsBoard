@@ -1,0 +1,13 @@
+/.vscode
+
+
+
+*.axf
+*.o
+*.d
+*.htm
+*.lnp
+*.map
+*.sct
+*.dep
+*.lst
