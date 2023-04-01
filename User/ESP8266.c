@@ -19,7 +19,6 @@ static void show_ip(char *buf)
  * @brief       按键1功能，切换透传模式
  * @param       is_unvarnished: 0，未进入透传
  *                              1，已进入透传
- * @retval      无
  */
 void change_unvarnished(uint8_t *is_unvarnished)
 {
@@ -52,7 +51,6 @@ void change_unvarnished(uint8_t *is_unvarnished)
  * @brief       进入透传时，将接收自TCP Server的数据发送到串口调试助手
  * @param       is_unvarnished: 0，未进入透传
  *                              1，已进入透传
- * @retval      无
  */
 static void upload_data(uint8_t is_unvarnished)
 {
@@ -72,20 +70,14 @@ static void upload_data(uint8_t is_unvarnished)
 }
 
 /**
- * @brief       Esp8266初始化
- * @param       无
- * @retval      无
+ * @brief   esp8266初始化
+ * @param   无
+ * @author  ekko
  */
 void ESP8266_init(void)
 {
     uint8_t ret;
     char ip_buf[16];
-    uint8_t key;
-    uint8_t is_unvarnished = 0;
-
-    char request[1024];
-
-    // char request[1024];
 
     /* 初始化ATK-MW8266D */
     ret = atk_mw8266d_init(115200);

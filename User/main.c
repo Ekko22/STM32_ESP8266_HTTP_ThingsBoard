@@ -7,7 +7,6 @@
 #include "ESP8266.h"
 #include "temp.h"
 #include "http.h"
-// #include "http.h"
 // 信息显示
 void show_mesg(void)
 {
@@ -43,6 +42,7 @@ int main(void)
         {
             request_body(request);
             printf("%s\r\n", request);
+            /* http post 温湿度*/
             http_post(request, is_unvarnished);
 
             /* 读取温湿度值 */
