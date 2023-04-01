@@ -7,4 +7,4 @@ void http_init(void);
 #define WIFI_PWD "py011121"                 // ≈‰÷√WiFi√‹¬Î
 #define THINGS_IP "43.143.141.18"           // ≈‰÷√thingsboard IPµÿ÷∑
 #define THINGS_PORT "8080"                  // ≈‰÷√thingsboard∂Àø⁄
-#define THINGS_TOKEN "psPBidsv4XBNbl3bu91D" // ≈‰÷√thingsboard token
+#define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // ≈‰÷√thingsboard token

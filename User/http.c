@@ -16,19 +16,10 @@ static void temp_humi_json(char *json)
     uint8_t temp, humi;
     temp_read(&temp);
     humi_read(&humi);
-    sprintf(json, "{\"temp\":\"%d\", \"humi\":\"%d\"}", temp, humi);
+    sprintf(json, "{\"temperature\":\"%d\", \"humidity\":\"%d\"}", temp, humi);
 }
 
 // 拼接请求体
-/*
-    示例
-    char request[] = "POST /api/v1/psPBidsv4XBNbl3bu91D/telemetry HTTP/1.1\r\n"
-                     "Host: 43.143.141.18:8080\r\n"
-                     "Content-Type: application/json\r\n"
-                     "Content-Length: 35\r\n"
-                     "\r\n"
-                     "{\"zut0\":\"ekko5\", \"cs20\":\"value2\"}\r\n";
-*/
 void request_body(char *request)
 {
     char json[50];

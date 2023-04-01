@@ -1,15 +1,23 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ATK-MW8266D'
-compiling ESP8266.c...
+compiling http.c...
+..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
+  #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // ≈‰÷√thingsboard token
 ..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
-  #define THINGS_TOKEN "psPBidsv4XBNbl3bu91D" // ≈‰÷√thingsboard token
-..\..\User\ESP8266.c(55): warning:  #177-D: function "upload_data"  was declared but never referenced
-  static void upload_data(uint8_t is_unvarnished)
-..\..\User\ESP8266.c: 3 warnings, 0 errors
+..\..\User\http.c(17): warning:  #223-D: function "temp_read" declared implicitly
+      temp_read(&temp);
+..\..\User\http.c(18): warning:  #223-D: function "humi_read" declared implicitly
+      humi_read(&humi);
+..\..\User\http.c(45): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c(50): warning:  #223-D: function "delay_ms" declared implicitly
+      delay_ms(2000);
+..\..\User\http.c(56): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=30192 RO-data=13184 RW-data=36 ZI-data=2244  
+Program Size: Code=30204 RO-data=13184 RW-data=36 ZI-data=2244  
 FromELF: creating hex file...
-"..\..\Output\atk_f103.axf" - 0 Error(s), 3 Warning(s).
+"..\..\Output\atk_f103.axf" - 0 Error(s), 7 Warning(s).
 Build Time Elapsed:  00:00:02
