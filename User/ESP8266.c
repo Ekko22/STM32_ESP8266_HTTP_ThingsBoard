@@ -21,7 +21,7 @@ static void show_ip(char *buf)
  *                              1，已进入透传
  * @retval      无
  */
-static void change_unvarnished(uint8_t *is_unvarnished)
+void change_unvarnished(uint8_t *is_unvarnished)
 {
     uint8_t ret;
 
@@ -68,40 +68,6 @@ static void upload_data(uint8_t is_unvarnished)
             /* 重开开始接收来自ATK-MW8266D UART的数据 */
             atk_mw8266d_uart_rx_restart();
         }
-    }
-}
-
-/**
- * @brief HTTP POST 请求
- * @author Ekko
- */
-void http_post(char request[], uint8_t is_unvarnished)
-{ // request为整个请求体
-    /*
-    示例
-    char request[] = "POST /api/v1/psPBidsv4XBNbl3bu91D/telemetry HTTP/1.1\r\n"
-                     "Host: 43.143.141.18:8080\r\n"
-                     "Content-Type: application/json\r\n"
-                     "Content-Length: 35\r\n"
-                     "\r\n"
-                     "{\"zut0\":\"ekko5\", \"cs20\":\"value2\"}\r\n";
-    */
-
-    // 打开透传模式
-    if (is_unvarnished == 0)
-    {
-        change_unvarnished(&is_unvarnished);
-    }
-
-    atk_mw8266d_uart_printf(request);
-
-    delay_ms(2000);
-    lcd_show_string(10, 220, 256, 16, 16, "HTTP POST success!   sending.....", RED);
-
-    // 关闭透传模式
-    if (is_unvarnished == 1)
-    {
-        change_unvarnished(&is_unvarnished);
     }
 }
 
