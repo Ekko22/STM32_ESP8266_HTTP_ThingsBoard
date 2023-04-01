@@ -8,12 +8,6 @@
 #include "temp.h"
 #include "http.h"
 
-#define WIFI_SSID "Ekko_01"                 // 配置WiFi名称
-#define WIFI_PWD "py011121"                 // 配置WiFi密码
-#define THINGS_IP "43.143.141.18"           // 配置thingsboard IP地址
-#define THINGS_PORT "8080"                  // 配置thingsboard端口
-#define THINGS_TOKEN "psPBidsv4XBNbl3bu91D" // 配置thingsboard token
-
 // 显示局域网内IP地址
 static void show_ip(char *buf)
 {

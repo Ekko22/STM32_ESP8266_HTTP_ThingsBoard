@@ -5,10 +5,6 @@
 #include "stdio.h"
 #include "temp.h"
 
-#define THINGS_IP "43.143.141.18"           // 配置thingsboard IP地址
-#define THINGS_PORT "8080"                  // 配置thingsboard端口
-#define THINGS_TOKEN "psPBidsv4XBNbl3bu91D" // 配置thingsboard token
-
 void http_init(void);
 
 // 温度湿度拼接成json格式
