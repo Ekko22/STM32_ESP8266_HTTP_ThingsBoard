@@ -1,23 +1,23 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ATK-MW8266D'
-compiling http.c...
-..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
-  #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // 配置thingsboard token
+compiling main.c...
 ..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
-..\..\User\http.c(17): warning:  #223-D: function "temp_read" declared implicitly
-      temp_read(&temp);
-..\..\User\http.c(18): warning:  #223-D: function "humi_read" declared implicitly
-      humi_read(&humi);
-..\..\User\http.c(45): warning:  #223-D: function "change_unvarnished" declared implicitly
-          change_unvarnished(&is_unvarnished);
-..\..\User\http.c(50): warning:  #223-D: function "delay_ms" declared implicitly
-      delay_ms(2000);
-..\..\User\http.c(56): warning:  #223-D: function "change_unvarnished" declared implicitly
-          change_unvarnished(&is_unvarnished);
-..\..\User\http.c: 7 warnings, 0 errors
+..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
+  #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // 配置thingsboard token
+..\..\User\main.c(30): warning:  #223-D: function "temp_init" declared implicitly
+      temp_init();                        /* 初始化温湿度传感器 */
+..\..\User\main.c(45): warning:  #223-D: function "request_body" declared implicitly
+              request_body(request);
+..\..\User\main.c(48): warning:  #223-D: function "http_post" declared implicitly
+              http_post(request, is_unvarnished);
+..\..\User\main.c(51): warning:  #223-D: function "dht11_read_data" declared implicitly
+              dht11_read_data(&temperature, &humidity);
+..\..\User\main.c(63): warning:  #223-D: function "http_get" declared implicitly
+              is_on = http_get(is_unvarnished);
+..\..\User\main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=30204 RO-data=13184 RW-data=36 ZI-data=2244  
+Program Size: Code=30464 RO-data=13276 RW-data=36 ZI-data=4100  
 FromELF: creating hex file...
 "..\..\Output\atk_f103.axf" - 0 Error(s), 7 Warning(s).
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03

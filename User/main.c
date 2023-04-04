@@ -35,13 +35,15 @@ int main(void)
     char request[1024];
     uint8_t temperature;
     uint8_t humidity;
+
+    uint16_t is_on = 0;
     while (1)
     {
-        /* 每2000ms执行一次*/
-        if (t % 200 == 0)
+        /* 每2000ms请求一次post*/
+        if (t % 2000 == 0)
         {
             request_body(request);
-            printf("%s\r\n", request);
+            // printf("%s\r\n", request);
             /* http post 温湿度*/
             http_post(request, is_unvarnished);
 
@@ -55,13 +57,22 @@ int main(void)
             lcd_show_num(65, 270, humidity, 3, 24, BLUE);
         }
 
+        /* 每500ms get一次 */
+        if (t % 500 == 0)
+        {
+            is_on = http_get(is_unvarnished);
+        }
+
         delay_ms(10);
         t++;
 
-        if (t == 30)
+        if (is_on)
         {
-            t = 0;
-            LED0_TOGGLE(); /* LED0闪烁 */
+            LED0(0);
         }
+        if (is_on == 0)
+        {
+            LED0(1);
+        } 
     }
 }

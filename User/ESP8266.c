@@ -5,6 +5,7 @@
 #include "./BSP/LED/led.h"
 #include "./BSP/KEY/key.h"
 #include "./BSP/LCD/lcd.h"
+#include "string.h"
 #include "temp.h"
 #include "http.h"
 
@@ -52,7 +53,7 @@ void change_unvarnished(uint8_t *is_unvarnished)
  * @param       is_unvarnished: 0，未进入透传
  *                              1，已进入透传
  */
-static void upload_data(uint8_t is_unvarnished)
+void upload_data(uint8_t is_unvarnished, char *flag)
 {
     uint8_t *buf;
 
@@ -62,7 +63,13 @@ static void upload_data(uint8_t is_unvarnished)
         buf = atk_mw8266d_uart_rx_get_frame();
         if (buf != NULL)
         {
-            printf("%s", buf);
+
+            // 打印接收到的数据
+            // printf("%s\n", buf);
+
+            //  printf("倒数第三个字符:%c\n", buf[strlen(buf) - 3]);
+
+            flag[0] = buf[strlen(buf) - 3];
             /* 重开开始接收来自ATK-MW8266D UART的数据 */
             atk_mw8266d_uart_rx_restart();
         }
