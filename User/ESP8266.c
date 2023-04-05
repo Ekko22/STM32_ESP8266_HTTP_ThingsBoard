@@ -32,11 +32,11 @@ void change_unvarnished(uint8_t *is_unvarnished)
         if (ret == 0)
         {
             *is_unvarnished = 1;
-            printf("Enter unvarnished!\r\n");
+            // printf("Enter unvarnished!\r\n");
         }
         else
         {
-            printf("Enter unvarnished failed!\r\n");
+            // printf("Enter unvarnished failed!\r\n");
         }
     }
     else
@@ -44,7 +44,7 @@ void change_unvarnished(uint8_t *is_unvarnished)
         /* 退出透传 */
         atk_mw8266d_exit_unvarnished();
         *is_unvarnished = 0;
-        printf("Exit unvarnished!\r\n");
+        // printf("Exit unvarnished!\r\n");
     }
 }
 
@@ -52,6 +52,8 @@ void change_unvarnished(uint8_t *is_unvarnished)
  * @brief       进入透传时，将接收自TCP Server的数据发送到串口调试助手
  * @param       is_unvarnished: 0，未进入透传
  *                              1，已进入透传
+ *                      *flag : 用于传出接收到的数据
+ * @author      Ekko
  */
 void upload_data(uint8_t is_unvarnished, char *flag)
 {
@@ -63,12 +65,7 @@ void upload_data(uint8_t is_unvarnished, char *flag)
         buf = atk_mw8266d_uart_rx_get_frame();
         if (buf != NULL)
         {
-
-            // 打印接收到的数据
-            // printf("%s\n", buf);
-
-            //  printf("倒数第三个字符:%c\n", buf[strlen(buf) - 3]);
-
+            // 将远端灯的状态值传出
             flag[0] = buf[strlen(buf) - 3];
             /* 重开开始接收来自ATK-MW8266D UART的数据 */
             atk_mw8266d_uart_rx_restart();
@@ -79,7 +76,7 @@ void upload_data(uint8_t is_unvarnished, char *flag)
 /**
  * @brief   esp8266初始化
  * @param   无
- * @author  ekko
+ * @author  Ekko
  */
 void ESP8266_init(void)
 {

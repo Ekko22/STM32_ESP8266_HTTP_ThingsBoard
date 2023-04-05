@@ -30,23 +30,21 @@ int main(void)
     temp_init();                        /* 初始化温湿度传感器 */
     ESP8266_init();                     /* 初始化ESP8266 */
 
-    uint8_t is_unvarnished = 0;
-    uint8_t t; // 用于计时
-    char request[1024];
-    uint8_t temperature;
-    uint8_t humidity;
-
-    uint16_t is_on = 0;
+    uint8_t is_unvarnished = 0; // 标识是否进入透传模式
+    uint8_t t;                  // 用于计时
+    char request[1024];         // 用于存放http请求
+    uint8_t temperature;        // 温度
+    uint8_t humidity;           // 湿度
+    uint16_t is_on = 0;         // LED灯状态
     while (1)
     {
-        /* 每2000ms请求一次post*/
-        if (t % 2000 == 0)
+        /* 每200ms请求一次post*/
+        if (t % 200 == 0)
         {
+            /* 读取温湿度值,拼接请求体 */
             request_body(request);
-            // printf("%s\r\n", request);
             /* http post 温湿度*/
             http_post(request, is_unvarnished);
-
             /* 读取温湿度值 */
             dht11_read_data(&temperature, &humidity);
             /* 显示温度 */
@@ -58,14 +56,15 @@ int main(void)
         }
 
         /* 每500ms get一次 */
-        if (t % 500 == 0)
+        if (t % 490 == 0)
         {
-            is_on = http_get(is_unvarnished);
+            is_on = http_get_led(is_unvarnished);
         }
 
         delay_ms(10);
         t++;
 
+        // 如果状态为1，LED灯亮，否则灭
         if (is_on)
         {
             LED0(0);
@@ -73,6 +72,6 @@ int main(void)
         if (is_on == 0)
         {
             LED0(1);
-        } 
+        }
     }
 }
