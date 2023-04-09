@@ -80,7 +80,7 @@ uint16_t http_get_led(uint8_t is_unvarnished)
     }
     // ∆¥Ω”«Î«ÛÃÂ
     char request[200];
-    sprintf(request, "GET /api/v1/%s/attributes?clientKeys=switch&sharedKeys=shared1 HTTP/1.1\r\n"
+    sprintf(request, "GET /api/v1/%s/attributes?sharedKeys=switch HTTP/1.1\r\n"
                      "Host: %s:%s\r\n"
                      "\r\n",
             THINGS_TOKEN, THINGS_IP, THINGS_PORT);

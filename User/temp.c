@@ -8,11 +8,11 @@ void temp_init(void)
 {
     if (dht11_init()) /* DHT11≥ı ºªØ */
     {
-        lcd_show_string(10, 120, 256, 16, 16, "DHT11 Error", RED);
+        lcd_show_string(10, 100, 256, 16, 16, "DHT11 Error", RED);
     }
     else
     {
-        lcd_show_string(10, 120, 256, 16, 16, "DHT11 init success!", BLUE);
+        lcd_show_string(10, 100, 256, 16, 16, "DHT11 init success!", BLUE);
     }
 }
 

@@ -14,7 +14,7 @@ void show_mesg(void)
     lcd_show_string(10, 10, 320, 32, 32, "THINGSBOARS_MONITOR", RED);
     lcd_show_string(10, 48, 256, 24, 24, "DESIGN_BY_CS20", RED);
     lcd_show_string(10, 80, 256, 16, 16, "KEY0: NULL", BLUE);
-    lcd_show_string(10, 100, 256, 16, 16, "KEY1: NULL", BLUE);
+    // lcd_show_string(10, 100, 256, 16, 16, "KEY1: NULL", BLUE);
 }
 
 int main(void)

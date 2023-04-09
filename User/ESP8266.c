@@ -94,14 +94,14 @@ void ESP8266_init(void)
             delay_ms(200);
         }
     }
-    lcd_show_string(10, 140, 256, 16, 16, "ESP8266 init success!", BLUE);
+    lcd_show_string(10, 120, 256, 16, 16, "ESP8266 init success!", BLUE);
     printf("Joining to AP...\r\n");
     ret = atk_mw8266d_restore();      /* 恢复出厂设置 */
     ret += atk_mw8266d_at_test();     /* AT测试 */
     ret += atk_mw8266d_set_mode(1);   /* Station模式 */
     ret += atk_mw8266d_sw_reset();    /* 软件复位 */
     ret += atk_mw8266d_ate_config(0); /* 关闭回显功能 */
-    lcd_show_string(10, 160, 256, 16, 16, "Joining to AP......", BLUE);
+    lcd_show_string(10, 140, 256, 16, 16, "Joining to AP......", BLUE);
     ret += atk_mw8266d_join_ap(WIFI_SSID, WIFI_PWD); /* 连接WIFI */
     ret += atk_mw8266d_get_ip(ip_buf);               /* 获取IP地址 */
     if (ret != 0)
@@ -114,7 +114,7 @@ void ESP8266_init(void)
             delay_ms(200);
         }
     }
-    lcd_show_string(10, 140, 256, 16, 16, "Joining to AP success!", BLUE);
+    lcd_show_string(10, 160, 256, 16, 16, "Joining to AP success!", BLUE);
     lcd_show_string(10, 180, 256, 16, 16, "IP: ", BLUE);
     show_ip(ip_buf);
 
