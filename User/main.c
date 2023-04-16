@@ -5,8 +5,10 @@
 #include "./BSP/KEY/key.h"
 #include "./BSP/LCD/lcd.h"
 #include "ESP8266.h"
+#include "./BSP/BEEP/beep.h"
 #include "temp.h"
 #include "http.h"
+
 // 信息显示
 void show_mesg(void)
 {
@@ -28,7 +30,8 @@ int main(void)
     lcd_init();                         /* 初始化LCD */
     show_mesg();                        /* 显示实验信息 */
     temp_init();                        /* 初始化温湿度传感器 */
-    ESP8266_init();                     /* 初始化ESP8266 */
+    beep_init();
+    ESP8266_init(); /* 初始化ESP8266 */
 
     uint8_t is_unvarnished = 0; // 标识是否进入透传模式
     uint8_t t;                  // 用于计时
@@ -36,6 +39,9 @@ int main(void)
     uint8_t temperature;        // 温度
     uint8_t humidity;           // 湿度
     uint16_t is_on = 0;         // LED灯状态
+
+    uint16_t out = 1;
+
     while (1)
     {
         /* 每200ms请求一次post*/
@@ -56,22 +62,36 @@ int main(void)
         }
 
         /* 每500ms get一次 */
-        if (t % 490 == 0)
+        if (t % 49 == 0)
         {
             is_on = http_get_led(is_unvarnished);
+            out = is_on;
         }
 
         delay_ms(10);
         t++;
 
-        // 如果状态为1，LED灯亮，否则灭
+        // 如果状态为1，LED灯亮，否则灭，蜂鸣器反之
         if (is_on)
         {
-            LED0(0);
+            while (out)
+            {
+                LED0(0);
+                delay_ms(200);
+                LED1(0);
+                delay_ms(200);
+                LED0(1);
+                delay_ms(200);
+                LED1(1);
+                BEEP(1);
+                out = http_get_led(is_unvarnished);
+                delay_ms(400);
+            }
         }
         if (is_on == 0)
         {
             LED0(1);
+            BEEP(0);
         }
     }
 }

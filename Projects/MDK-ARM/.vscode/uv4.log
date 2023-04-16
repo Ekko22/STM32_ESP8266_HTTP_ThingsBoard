@@ -1,41 +1,25 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ATK-MW8266D'
-compiling temp.c...
-..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\..\User\temp.c(9): warning:  #223-D: function "dht11_init" declared implicitly
-      if (dht11_init()) /* DHT11初始化 */
-..\..\User\temp.c(24): warning:  #223-D: function "dht11_read_data" declared implicitly
-      dht11_read_data(&temperature, &humidity); /* 读取温湿度值 */
-..\..\User\temp.c(33): warning:  #223-D: function "dht11_read_data" declared implicitly
-      dht11_read_data(&temperature, &humidity); /* 读取温湿度值 */
-..\..\User\temp.c: 4 warnings, 0 errors
 compiling main.c...
 ..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
   #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // thingsboard token
-..\..\User\main.c(30): warning:  #223-D: function "temp_init" declared implicitly
+..\..\User\main.c(32): warning:  #223-D: function "temp_init" declared implicitly
       temp_init();                        /* 初始化温湿度传感器 */
-..\..\User\main.c(45): warning:  #223-D: function "request_body" declared implicitly
+..\..\User\main.c(51): warning:  #223-D: function "request_body" declared implicitly
               request_body(request);
-..\..\User\main.c(47): warning:  #223-D: function "http_post" declared implicitly
+..\..\User\main.c(53): warning:  #223-D: function "http_post" declared implicitly
               http_post(request, is_unvarnished);
-..\..\User\main.c(49): warning:  #223-D: function "dht11_read_data" declared implicitly
+..\..\User\main.c(55): warning:  #223-D: function "dht11_read_data" declared implicitly
               dht11_read_data(&temperature, &humidity);
-..\..\User\main.c(61): warning:  #223-D: function "http_get_led" declared implicitly
+..\..\User\main.c(67): warning:  #223-D: function "http_get_led" declared implicitly
               is_on = http_get_led(is_unvarnished);
-..\..\User\main.c: 7 warnings, 0 errors
-compiling ESP8266.c...
-..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
-  #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // thingsboard token
-..\..\User\ESP8266.c(69): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
-              flag[0] = buf[strlen(buf) - 3];
-..\..\User\ESP8266.c: 3 warnings, 0 errors
+..\..\User\main.c(87): warning:  #223-D: function "http_get_led" declared implicitly
+                  out = http_get_led(is_unvarnished);
+..\..\User\main.c: 8 warnings, 0 errors
 linking...
-Program Size: Code=30336 RO-data=13256 RW-data=36 ZI-data=4100  
+Program Size: Code=30544 RO-data=13256 RW-data=36 ZI-data=4100  
 FromELF: creating hex file...
-"..\..\Output\atk_f103.axf" - 0 Error(s), 14 Warning(s).
-Build Time Elapsed:  00:00:01
+"..\..\Output\atk_f103.axf" - 0 Error(s), 8 Warning(s).
+Build Time Elapsed:  00:00:02

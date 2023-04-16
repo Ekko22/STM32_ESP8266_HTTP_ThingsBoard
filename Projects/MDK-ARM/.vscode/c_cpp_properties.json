@@ -22,6 +22,7 @@
                 "c:\\Users\\Ekko\\Desktop\\STM32\\Drivers\\BSP\\KEY",
                 "c:\\Users\\Ekko\\Desktop\\STM32\\Drivers\\BSP\\LCD",
                 "c:\\Users\\Ekko\\Desktop\\STM32\\Drivers\\BSP\\ATK_MW8266D",
+                "c:\\Users\\Ekko\\Desktop\\STM32\\Drivers\\BSP\\BEEP",
                 "c:\\Users\\Ekko\\Desktop\\STM32"
             ],
             "defines": [
