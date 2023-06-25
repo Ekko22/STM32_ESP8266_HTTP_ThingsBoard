@@ -15,9 +15,9 @@ void temp_init(void)
         lcd_show_string(10, 100, 256, 16, 16, "DHT11 init success!", BLUE);
     }
 }
-
-// 读取温度
-void temp_read(uint8_t *temp)
+=
+    // 读取温度
+    void temp_read(uint8_t * temp)
 {
     uint8_t temperature;
     uint8_t humidity;

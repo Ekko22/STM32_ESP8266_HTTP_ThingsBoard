@@ -1,10 +1,18 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'ATK-MW8266D'
+compiling ESP8266.c...
+..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
+  #define THINGS_TOKEN "3"       // thingsboard token
+..\..\User\ESP8266.c(69): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *"
+              flag[0] = buf[strlen(buf) - 3];
+..\..\User\ESP8266.c: 3 warnings, 0 errors
 compiling main.c...
 ..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
-  #define THINGS_TOKEN "30Sen8ZbecE3PXrxSTqg" // thingsboard token
+  #define THINGS_TOKEN "3"       // thingsboard token
 ..\..\User\main.c(32): warning:  #223-D: function "temp_init" declared implicitly
       temp_init();                        /* 初始化温湿度传感器 */
 ..\..\User\main.c(51): warning:  #223-D: function "request_body" declared implicitly
@@ -18,8 +26,34 @@ compiling main.c...
 ..\..\User\main.c(87): warning:  #223-D: function "http_get_led" declared implicitly
                   out = http_get_led(is_unvarnished);
 ..\..\User\main.c: 8 warnings, 0 errors
+compiling http.c...
+..\..\User\http.h(10): warning:  #1-D: last line of file ends without a newline
+  #define THINGS_TOKEN "3"       // thingsboard token
+..\..\User\temp.h(6): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\..\User\http.c(17): warning:  #223-D: function "temp_read" declared implicitly
+      temp_read(&temp);
+..\..\User\http.c(18): warning:  #223-D: function "humi_read" declared implicitly
+      humi_read(&humi);
+..\..\User\http.c(50): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c(52): warning:  #223-D: function "delay_ms" declared implicitly
+      delay_ms(100);
+..\..\User\http.c(62): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c(79): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c(90): warning:  #223-D: function "delay_ms" declared implicitly
+      delay_ms(500);
+..\..\User\http.c(91): warning:  #223-D: function "upload_data" declared implicitly
+      upload_data(is_unvarnished, &flagout);
+..\..\User\http.c(95): warning:  #223-D: function "change_unvarnished" declared implicitly
+          change_unvarnished(&is_unvarnished);
+..\..\User\http.c(106): warning:  #940-D: missing return statement at end of non-void function "http_get_led" 
+  }
+..\..\User\http.c: 12 warnings, 0 errors
 linking...
-Program Size: Code=30544 RO-data=13256 RW-data=36 ZI-data=4100  
+Program Size: Code=30500 RO-data=13264 RW-data=36 ZI-data=4100  
 FromELF: creating hex file...
-"..\..\Output\atk_f103.axf" - 0 Error(s), 8 Warning(s).
+"..\..\Output\atk_f103.axf" - 0 Error(s), 23 Warning(s).
 Build Time Elapsed:  00:00:02

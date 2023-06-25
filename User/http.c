@@ -24,7 +24,7 @@ void request_body(char *request)
 {
     char json[50];
     temp_humi_json(json);
-    sprintf(request, "POST /api/v1/%s/telemetry HTTP/1.1\r\n"
+    sprintf(request, "POST /api/v1/%s/attributes HTTP/1.1\r\n"
                      "Host: %s:%s\r\n"
                      "Content-Type: application/json\r\n"
                      "Content-Length: %d\r\n"
@@ -80,7 +80,7 @@ uint16_t http_get_led(uint8_t is_unvarnished)
     }
     // ∆¥Ω”«Î«ÛÃÂ
     char request[200];
-    sprintf(request, "GET /api/v1/%s/attributes?sharedKeys=switch HTTP/1.1\r\n"
+    sprintf(request, "GET /api/v1/%s/attributes?clientKeys=LEDSwitch HTTP/1.1\r\n"
                      "Host: %s:%s\r\n"
                      "\r\n",
             THINGS_TOKEN, THINGS_IP, THINGS_PORT);
